@@ -1,3 +1,3 @@
 export interface TextDisplayProps {
-  children: string;
+  children: string | number | undefined;
 }

@@ -12,3 +12,7 @@ export interface ProductType {
   image: string;
   rating: RatingTypes;
 }
+
+export interface UseProductProps {
+  id: number;
+}

@@ -10,29 +10,46 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import PageTitleDisplay from "@component/helpers/PageTitleDisplay";
+import { useAppDispatch, useAppSelector } from "@component/helpers/ReduxHooks";
+import { logout } from "@component/store/slices";
+import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const Header: React.FC = () => {
-  return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            icon
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <PageTitleDisplay />
-          </Typography>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
-      </AppBar>
-    </Box>
-  );
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+  const isAuth = useAppSelector((state) => state.isAuth);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    router.push("/sign-in");
+  };
+
+  if (isAuth) {
+    return (
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              sx={{ mr: 2 }}
+            >
+              icon
+            </IconButton>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              <PageTitleDisplay />
+            </Typography>
+            <Button color="inherit" onClick={() => handleLogout()}>
+              Logout
+            </Button>
+          </Toolbar>
+        </AppBar>
+      </Box>
+    );
+  }
 };
 
 export default Header;

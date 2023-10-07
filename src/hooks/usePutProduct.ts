@@ -1,5 +1,5 @@
 import { notification } from "@component/helpers/notification";
-import productsService from "@component/services/products.service";
+import productsService from "@component/controllers/products.service";
 import {
   CreateProductType,
   ProductType,

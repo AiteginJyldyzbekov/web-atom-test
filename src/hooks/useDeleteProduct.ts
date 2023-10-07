@@ -1,5 +1,5 @@
 import { notification } from "@component/helpers/notification";
-import productsService from "@component/services/products.service";
+import productsService from "@component/controllers/products.service";
 import { ProductType } from "@component/types/serviceTypes/ProductsType";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";

@@ -1,5 +1,5 @@
 import { notification } from "@component/helpers/notification";
-import productsService from "@component/services/products.service";
+import productsService from "@component/controllers/products.service";
 import {
   CreateProductType,
   ProductType,
@@ -23,10 +23,10 @@ export function usePostProduct() {
 
         localStorage.setItem("productsData", JSON.stringify(cachedData));
         router.push("/");
-        notification("Продукт успешно добавлен!", "success")
+        notification("Продукт успешно добавлен!", "success");
       })
       .catch(() => {
-        notification("Не удалось добавить продукт", "error")
+        notification("Не удалось добавить продукт", "error");
       })
   );
 

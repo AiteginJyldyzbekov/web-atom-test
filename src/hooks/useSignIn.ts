@@ -1,6 +1,6 @@
 import { useAppDispatch } from "@component/helpers/ReduxHooks";
 import { notification } from "@component/helpers/notification";
-import userService from "@component/services/user.service";
+import userService from "@component/controllers/user.service";
 import { login } from "@component/store/slices";
 import { useSignInProps } from "@component/types/serviceTypes/AuthTypes";
 import { useMutation } from "@tanstack/react-query";

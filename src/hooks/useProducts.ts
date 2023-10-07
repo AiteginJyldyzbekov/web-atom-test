@@ -1,4 +1,4 @@
-import productsService from "@component/services/products.service";
+import productsService from "@component/controllers/products.service";
 import { useQuery } from "@tanstack/react-query";
 
 const UseProducts = () => {

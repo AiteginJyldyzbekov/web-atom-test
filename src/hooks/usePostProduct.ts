@@ -1,3 +1,4 @@
+import { notification } from "@component/helpers/notification";
 import productsService from "@component/services/products.service";
 import {
   CreateProductType,
@@ -22,8 +23,11 @@ export function usePostProduct() {
 
         localStorage.setItem("productsData", JSON.stringify(cachedData));
         router.push("/");
+        notification("Продукт успешно добавлен!", "success")
       })
-      .catch((error) => console.log(error))
+      .catch(() => {
+        notification("Не удалось добавить продукт", "error")
+      })
   );
 
   const addProduct = async (data: CreateProductType) => {

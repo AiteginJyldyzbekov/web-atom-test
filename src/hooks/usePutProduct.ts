@@ -1,15 +1,12 @@
+import { notification } from "@component/helpers/notification";
 import productsService from "@component/services/products.service";
 import {
   CreateProductType,
   ProductType,
 } from "@component/types/serviceTypes/ProductsType";
-import {
-  useQuery,
-  UseQueryResult,
-  useMutation,
-  useQueryClient,
-} from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export function usePutProduct() {
   const router = useRouter();
@@ -28,14 +25,17 @@ export function usePutProduct() {
             const updatedProduct = {
               ...productsData[indexOfProductToUpdate],
               ...data,
-              id: Number(id), // Сохраните старый id
+              id: Number(id),
             };
             productsData[indexOfProductToUpdate] = updatedProduct;
             localStorage.setItem("productsData", JSON.stringify(productsData));
             router.push("/");
+            notification("Продукт успешно изменен", "success");
           }
         })
-        .catch((error) => console.log(error))
+        .catch(() => {
+          notification("Не удалось изменить продукт", "error");
+        })
   );
 
   const editProduct = async ({

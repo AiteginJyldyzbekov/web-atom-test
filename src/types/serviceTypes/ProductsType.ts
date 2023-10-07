@@ -18,7 +18,6 @@ export interface UseProductProps {
 }
 
 export interface CreateProductType {
-  // id: number;
   title: string;
   price: number;
   category: string;

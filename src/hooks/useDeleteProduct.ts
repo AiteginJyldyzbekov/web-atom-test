@@ -1,3 +1,4 @@
+import { notification } from "@component/helpers/notification";
 import productsService from "@component/services/products.service";
 import { ProductType } from "@component/types/serviceTypes/ProductsType";
 import { useMutation } from "@tanstack/react-query";
@@ -10,7 +11,7 @@ export function useDeleteProduct() {
     ({ id }: { id: string | number }) =>
       productsService
         .deleteProduct(id)
-        .then((data) => {
+        .then(() => {
           const productsDataString = localStorage.getItem("productsData");
           if (productsDataString !== null) {
             const productsData: ProductType[] = JSON.parse(productsDataString);
@@ -23,9 +24,10 @@ export function useDeleteProduct() {
             );
             router.push("/");
           }
+          notification("Продукт успешно удален!", "success");
         })
-        .catch((error) => {
-          console.log(error);
+        .catch(() => {
+          notification("Не удалось удалить продукт", "error");
         })
   );
   const deleteProduct = async ({ id }: { id: string | number }) => {

@@ -1,16 +1,14 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import styles from "./SignIn.module.scss";
 import { Button, Typography } from "@mui/material";
 import { useSignIn } from "@component/hooks/useSignIn";
-import { useAppSelector } from "@component/helpers/ReduxHooks";
 import { useRouter } from "next/navigation";
 
 function SignIn() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const isAuth = useAppSelector((state) => state.isAuth);
   const { signIn } = useSignIn();
   const router = useRouter();
 

@@ -4,13 +4,11 @@ import UseProduct from "@component/hooks/useProduct";
 import ImageDisplay from "@component/components/atoms/image-display";
 import { useEffect, useState } from "react";
 import {
-  CreateProductType,
   ProductType,
 } from "@component/types/serviceTypes/ProductsType";
 import TextDisplay from "@component/components/atoms/text-display";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Chip from "@mui/material/Chip";

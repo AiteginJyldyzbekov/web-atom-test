@@ -4,12 +4,11 @@ import { getSession } from "next-auth/react";
 
 export default async function middleware() {
   const isAuth = useAppSelector((state) => state.isAuth);
-  console.log(isAuth);
   if (!isAuth) {
     return {
       redirect: {
-        destination: "/sign-in", // Укажите свой URL для страницы входа
-        permanent: false, // Если это временное перенаправление
+        destination: "/sign-in",
+        permanent: false, 
       },
     };
   }

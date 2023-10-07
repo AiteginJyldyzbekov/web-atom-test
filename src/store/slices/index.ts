@@ -1,12 +1,9 @@
 import CookieHandler from "@component/helpers/cookieHandler";
 import { createSlice } from "@reduxjs/toolkit";
-import { useRouter } from "next/router";
 
 const initialState = {
   isAuth: false,
 };
-
-
 
 const userSlice = createSlice({
   name: "user",

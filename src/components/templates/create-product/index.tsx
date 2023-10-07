@@ -1,9 +1,6 @@
 "use client";
 import { usePostProduct } from "@component/hooks/usePostProduct";
-import {
-  CreateProductType,
-  ProductType,
-} from "@component/types/serviceTypes/ProductsType";
+import { CreateProductType } from "@component/types/serviceTypes/ProductsType";
 import FormContainer from "@component/components/atoms/form-container";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
@@ -11,7 +8,6 @@ import TextDisplay from "@component/components/atoms/text-display";
 import Button from "@mui/material/Button";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import { productSchema } from "@component/helpers/validationSchema";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";

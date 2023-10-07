@@ -1,7 +1,4 @@
 "use client";
-import { TextDisplayProps } from "@component/types/TextDisplay";
-import styles from "./TextDisplay.module.scss";
-import { useState } from "react";
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -12,7 +9,6 @@ import IconButton from "@mui/material/IconButton";
 import PageTitleDisplay from "@component/helpers/PageTitleDisplay";
 import { useAppDispatch, useAppSelector } from "@component/helpers/ReduxHooks";
 import { logout } from "@component/store/slices";
-import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
 
 const Header: React.FC = () => {

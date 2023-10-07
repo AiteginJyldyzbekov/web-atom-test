@@ -1,5 +1,4 @@
 "use client";
-import { usePostProduct } from "@component/hooks/usePostProduct";
 import {
   CreateProductType,
   ProductType,
@@ -35,12 +34,11 @@ const EditProduct = ({ id }: { id: string }) => {
     resolver: yupResolver(productSchema),
   });
   const { editProduct } = usePutProduct();
-  const { isLoading, data } = UseProduct({ id });
+  const { data } = UseProduct({ id });
 
   const submit: SubmitHandler<CreateProductType> = (data, e) => {
     e?.preventDefault();
     editProduct({ data, id });
-    console.log(data);
   };
 
   const findData = () => {

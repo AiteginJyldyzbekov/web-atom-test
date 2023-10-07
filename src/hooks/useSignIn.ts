@@ -1,14 +1,15 @@
-import { useAppDispatch, useAppSelector } from "@component/helpers/ReduxHooks";
+import { useAppDispatch } from "@component/helpers/ReduxHooks";
+import { notification } from "@component/helpers/notification";
 import userService from "@component/services/user.service";
 import { login } from "@component/store/slices";
 import { useSignInProps } from "@component/types/serviceTypes/AuthTypes";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export function useSignIn() {
   const dispatch = useAppDispatch();
   const router = useRouter();
-  const isAuth = useAppSelector((state) => state.isAuth);
   const { mutate } = useMutation(
     ["sign in"],
     ({ email, password }: useSignInProps) =>
@@ -18,10 +19,10 @@ export function useSignIn() {
           dispatch(login(res.data.token));
           document.cookie = `authToken=${res.data.token}`;
           router.push("/");
-          
+          notification("Вы успешно вошли в систему", "success");
         })
         .catch(() => {
-          alert("error");
+          notification("Не правильный логин или пароль", "error");
         })
   );
   const signIn = async ({ email, password }: useSignInProps) => {

@@ -10,6 +10,7 @@ import PageTitleDisplay from "@component/helpers/PageTitleDisplay";
 import { useAppDispatch, useAppSelector } from "@component/helpers/ReduxHooks";
 import { logout } from "@component/store/slices";
 import { useRouter } from "next/navigation";
+import { notification } from "@component/helpers/notification";
 
 const Header: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -18,6 +19,7 @@ const Header: React.FC = () => {
 
   const handleLogout = () => {
     dispatch(logout());
+    notification("Вы успешно вышли из аккаунта", "success");
     router.push("/sign-in");
   };
 

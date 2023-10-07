@@ -12,9 +12,9 @@ export function useSignIn() {
   const router = useRouter();
   const { mutate } = useMutation(
     ["sign in"],
-    ({ email, password }: useSignInProps) =>
+    ({ username, password }: useSignInProps) =>
       userService
-        .signIn(email, password)
+        .signIn(username, password)
         .then((res) => {
           dispatch(login(res.data.token));
           document.cookie = `authToken=${res.data.token}`;
@@ -25,8 +25,8 @@ export function useSignIn() {
           notification("Не правильный логин или пароль", "error");
         })
   );
-  const signIn = async ({ email, password }: useSignInProps) => {
-    mutate({ email, password });
+  const signIn = async ({ username, password }: useSignInProps) => {
+    mutate({ username, password });
   };
 
   return { signIn };

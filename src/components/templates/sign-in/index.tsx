@@ -8,13 +8,13 @@ import { useRouter } from "next/navigation";
 
 function SignIn() {
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const { signIn } = useSignIn();
   const router = useRouter();
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    signIn({ email, password }).then(() => {
+    signIn({ username, password }).then(() => {
       router.push("/");
     });
   };
@@ -23,14 +23,14 @@ function SignIn() {
     <div className={styles.wrapper}>
       <div className={styles.left}>
         <Typography variant="h4" sx={{ textAlign: "center" }}>
-          Авторизация c Email и Пароль
+          Авторизация c Username и Пароль
         </Typography>
         <form onSubmit={submit}>
           <TextField
             id="outlined-basic"
-            label="Email"
+            label="Username"
             variant="outlined"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setUsername(e.target.value)}
           />
           <TextField
             id="outlined-basic"

@@ -14,15 +14,19 @@ function SignIn() {
   const { signIn } = useSignIn();
   const router = useRouter();
 
-  const submit = (e: any) => {
+  const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    signIn({ email, password });
+    signIn({ email, password }).then(() => {
+      router.push("/");
+    });
   };
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.left}>
-        <Typography variant="h4" sx={{textAlign: 'center'}}>Авторизация c Email и Пароль</Typography>
+        <Typography variant="h4" sx={{ textAlign: "center" }}>
+          Авторизация c Email и Пароль
+        </Typography>
         <form onSubmit={submit}>
           <TextField
             id="outlined-basic"

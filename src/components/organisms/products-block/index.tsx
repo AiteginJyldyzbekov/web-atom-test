@@ -4,12 +4,14 @@ import UseProducts from "@component/hooks/useProducts";
 import { useMemo } from "react";
 import Grid from "@mui/material/Grid";
 import Preloader from "@component/components/atoms/preloader";
+import { ProductType } from "@component/types/serviceTypes/ProductsType";
 
 const ProductsBlock: React.FC = () => {
   const { isLoading, data } = UseProducts();
+  console.log(data);
 
   const renderProducts = useMemo(() => {
-    return data?.map((el) => <ProductCard {...el} />);
+    return data?.map((el:ProductType) => <ProductCard {...el} />);
   }, [data]);
 
   if (isLoading) return <Preloader />;

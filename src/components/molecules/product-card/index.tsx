@@ -18,7 +18,7 @@ const ProductCard: React.FC<ProductType> = ({
   return (
     <Card
       sx={{
-        maxWidth: 345,
+        width: 320,
         backgroundColor: "#ffffff",
         borderRadius: "10px",
         boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",

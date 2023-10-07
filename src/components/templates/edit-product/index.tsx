@@ -10,26 +10,69 @@ import Grid from "@mui/material/Grid";
 import TextDisplay from "@component/components/atoms/text-display";
 import Button from "@mui/material/Button";
 import { useForm, SubmitHandler } from "react-hook-form";
+import UseProduct from "@component/hooks/useProduct";
+import { useEffect, useState } from "react";
+import { usePutProduct } from "@component/hooks/usePutProduct";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import { productSchema } from "@component/helpers/validationSchema";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
+import { Box, Typography } from "@mui/material";
 
-const CreateProduct = () => {
+const EditProduct = ({ id }: { id: string }) => {
+  const [product, setProduct] = useState<ProductType>();
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
-  } = useForm({
+  } = useForm<CreateProductType>({
+    defaultValues: {
+      title: "sds",
+      description: product && product.description,
+      price: product && product.price,
+      category: product && product.category,
+      image: product && product.image,
+    },
     resolver: yupResolver(productSchema),
   });
-  const { addProduct } = usePostProduct();
+  const { editProduct } = usePutProduct();
+  const { isLoading, data } = UseProduct({ id });
 
   const submit: SubmitHandler<CreateProductType> = (data, e) => {
     e?.preventDefault();
-    addProduct(data);
+    editProduct({ data, id });
+    console.log(data);
   };
+
+  const findData = () => {
+    const productsDataString: string | null =
+      localStorage.getItem("productsData");
+    if (productsDataString != null) {
+      const productsData: ProductType[] = JSON.parse(productsDataString);
+      const foundProduct = productsData.find(
+        (product) => product.id === Number(id)
+      );
+      setProduct(foundProduct);
+    }
+  };
+
+  useEffect(() => {
+    if (data) {
+      setProduct(data);
+    } else {
+      findData();
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (product) {
+      setValue("title", product.title);
+      setValue("description", product.description);
+      setValue("price", product.price);
+      setValue("category", product.category);
+      setValue("image", product.image);
+    }
+  }, [product]);
+
   return (
     <FormContainer>
       <Grid
@@ -37,7 +80,7 @@ const CreateProduct = () => {
           marginTop: "25px",
         }}
       >
-        <TextDisplay>Create Product</TextDisplay>
+        <TextDisplay>Edit Product</TextDisplay>
         <form onSubmit={handleSubmit(submit)}>
           <div className="inputs">
             <Box>
@@ -76,9 +119,7 @@ const CreateProduct = () => {
                   width: "100%",
                 }}
               />
-              <Typography variant="h6" sx={{ color: "red" }}>
-                {errors.price?.message}
-              </Typography>
+              {errors.price?.message}
             </Box>
             <Box>
               <TextField
@@ -108,7 +149,7 @@ const CreateProduct = () => {
             </Box>
           </div>
           <Button type="submit" variant="contained">
-            Add product
+            Save
           </Button>
         </form>
       </Grid>
@@ -116,4 +157,4 @@ const CreateProduct = () => {
   );
 };
 
-export default CreateProduct;
+export default EditProduct;

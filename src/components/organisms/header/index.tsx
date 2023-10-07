@@ -42,6 +42,16 @@ const Header: React.FC = () => {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               <PageTitleDisplay />
             </Typography>
+            <Button
+              variant="outlined"
+              color="inherit"
+              onClick={() => router.push("/create-product")}
+              sx={{
+                marginRight: "20px",
+              }}
+            >
+              Create product
+            </Button>
             <Button color="inherit" onClick={() => handleLogout()}>
               Logout
             </Button>

@@ -10,9 +10,18 @@ export interface ProductType {
   description: string;
   category: string;
   image: string;
-  rating: RatingTypes;
+  rating?: RatingTypes;
 }
 
 export interface UseProductProps {
   id: number;
+}
+
+export interface CreateProductType {
+  // id: number;
+  title: string;
+  price: number;
+  category: string;
+  description: string;
+  image: string;
 }

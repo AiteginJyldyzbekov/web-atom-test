@@ -17,7 +17,8 @@ export function useSignIn() {
         .then((res) => {
           dispatch(login(res.data.token));
           document.cookie = `authToken=${res.data.token}`;
-          router.push("/"); // Перенесите редирект сюда, когда авторизация успешна.
+          router.push("/");
+          
         })
         .catch(() => {
           alert("error");

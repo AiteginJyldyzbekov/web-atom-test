@@ -17,7 +17,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     if (authTokenCookie) {
       const token = authTokenCookie.split("=")[1];
       dispatch(login(token));
-      router.push("/")
     }else if(!authTokenCookie && !isAuth){
       router.push("/sign-in")
     }

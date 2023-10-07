@@ -10,7 +10,9 @@ const ProductsBlock: React.FC = () => {
   const { isLoading, data } = UseProducts();
 
   const renderProducts = useMemo(() => {
-    return data?.map((el:ProductType) => <ProductCard {...el} />);
+    return data?.map((el: ProductType) => (
+      <ProductCard {...el} key={`${el.title}_${el.id}`} />
+    ));
   }, [data]);
 
   if (isLoading) return <Preloader />;

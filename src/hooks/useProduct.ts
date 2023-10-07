@@ -7,14 +7,10 @@ type UseProductProps = {
 };
 
 const UseProduct = ({ id }: UseProductProps): UseQueryResult<ProductType> => {
-  if (id !== undefined) {
-    return useQuery(["product", id], () => productsService.getById(Number(id)), {
-      select: ({ data }) => data,
-      enabled: !!id,
-    });
-  } else {
-    return useQuery(["product", null], () => null);
-  }
+  return useQuery(["product", id], () => productsService.getById(Number(id)), {
+    select: ({ data }) => data,
+    enabled: !!id,
+  });
 };
 
 export default UseProduct;

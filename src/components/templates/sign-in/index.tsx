@@ -14,9 +14,7 @@ function SignIn() {
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    signIn({ username, password }).then(() => {
-      router.push("/");
-    });
+    signIn({ username, password });
   };
 
   return (
